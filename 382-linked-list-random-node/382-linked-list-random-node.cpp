@@ -10,22 +10,19 @@
  */
 class Solution {
 public:
-    ListNode* h =NULL;
+    vector<int> ans;
     Solution(ListNode* head) {
-        h=head;
+        while(head!=NULL){
+            ans.push_back(head->val);
+            head=head->next;
+        }
     }
     
     int getRandom() {
-        ListNode* curr= h;
-        ListNode* res;
-        int n=1;
-        while(curr) {
-            if (rand()% n == 0)
-            res = curr;
-            curr = curr->next;
-            n++;
-        }
-        return res->val;
+        int n=ans.size();
+        int a=int(rand()%n);
+        cout<<a;
+        return ans[a];
     }
 };
 
