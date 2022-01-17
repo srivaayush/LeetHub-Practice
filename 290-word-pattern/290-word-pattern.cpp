@@ -18,7 +18,7 @@ private:
 	}
 public:
     bool wordPattern(string pat, string s) {
-        map<char,string> m;
+        unordered_map<char,string> m;
         int n=pat.size();
         int j=0;
         
@@ -34,7 +34,7 @@ public:
                 return false;
             m[pat[i]]=v[i];
         }
-        map<string,char> m1;
+        unordered_map<string,char> m1;
         for(int i=0;i<n;i++)
         {
             if(m1[v[i]]!= '\0' && m1[v[i]]!=pat[i])
