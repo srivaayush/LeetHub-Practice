@@ -7,27 +7,28 @@ public:
         int req=(m+n)*mean;        
         req=req-sum;
         if(req> (6*n) || req<n)return {};
+        for(int i=0;i<n;i++)
+        {
+            if(i>=m){
+                rolls.push_back(req/n);
+            }
+            else
+                rolls[i]=req/n;
+        }
         
         
-        vector<int> ans(n,req/n);
         req=req-((req/n)*n);
-        cout<<req;        
         int a=0;
         while(req >0){            
-            if(ans[a]==6)
+            if(rolls[a]==6)
                 a++;
             else{
-                ans[a]++;
+                rolls[a]++;
                 req--;
             }
         }
-        return ans;
         
-       
-        // for(int i=0;i<n;i++)
-        // {
-        //     int 
-        // }
-        
+        rolls.resize(n,0);
+        return rolls;
     }
 };
