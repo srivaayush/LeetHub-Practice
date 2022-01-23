@@ -1,18 +1,14 @@
 class Solution {
 public:
-    vector<int> findLonely(vector<int>& a) {
-        map<int,int> m;
-        for(auto &x:a){
-            m[x]++;
+    vector<int> findLonely(vector<int>& nums) {
+        map<int,int> mp;
+        for(int i=0;i<nums.size();i++){
+            mp[nums[i]]++;
         }
-        set<int> s;
         vector<int> ans;
-        for(auto &x:a){
-            if( m[x+1]==0 && m[x-1]==0 && m[x]==1){
-                    ans.push_back(x);                
-            }
+        for(int i=0;i<nums.size();i++){
+            if(mp[nums[i]-1]==0 and mp[nums[i]+1]==0 and mp[nums[i]]==1) ans.push_back(nums[i]);
         }
-        return ans;
-        
+        return ans;   
     }
 };
