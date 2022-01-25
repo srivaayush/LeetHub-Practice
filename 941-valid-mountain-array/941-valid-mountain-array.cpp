@@ -8,13 +8,13 @@ public:
             if(arr[i]>=arr[i-1])break;
             i--;
         }
+        if(i==n-1 || i==0)return false;
         int j=0;
         while(j<n-1){
             if(arr[j]>=arr[j+1])break;
             j++;
         }
-        cout<<i<<"  "<<j<<endl;
-        if(j==i &&i!=n-1 && j!=0)return true;
+        if(j==i)return true;
         return false;
     }
 };
