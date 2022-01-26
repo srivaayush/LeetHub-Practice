@@ -11,25 +11,23 @@
  */
 class Solution {
 private:
-    map<int,int> m;
+    // map<int,int> m;
+    vector<int> ans;
 private:
     void getAll(TreeNode* root){
         if (root == NULL)
         return;
         getAll(root->left);
-        m[root->val]++;
+        ans.push_back(root->val);
+        // m[root->val]++;
         getAll(root->right);
     }
 public:
     vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
-        vector<int> ans;
+        
         getAll(root1);
         getAll(root2);
-        for(auto &x:m){
-            while(x.second--){
-               ans.push_back(x.first); 
-            }
-        }
+        sort(ans.begin(),ans.end());
         return ans;
     }
 };
