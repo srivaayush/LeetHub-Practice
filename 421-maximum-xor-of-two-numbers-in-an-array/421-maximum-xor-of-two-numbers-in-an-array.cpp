@@ -14,22 +14,11 @@ private:
     }
 public:
     int findMaximumXOR(vector<int>& nums) {
-//         int ans=0;
-//         // int n=nums.size();
-//         sort(nums.begin(),nums.end());
-//         int n=removeRepeated(nums);
-//         // cout<<n;
-//         for(int i=0;i<n;i++){            
-            
-//             for(int j=n-1;j>n/2;j--)
-//             ans=max(ans,nums[i]^nums[j]);
-//         }
-//         return ans;
         int res = 0, mask = 0;
         for (int i = 31, mask = 0; i >= 0; --i) {
             mask |= (1 << i);
             set<int> s;
-            for (int num : nums)  s.insert(num & mask);            
+            for (auto &x : nums)  s.insert(x & mask);            
             int t = res | (1 << i);
             for (int prefix : s) 
                 if (s.count(t ^ prefix)) {
