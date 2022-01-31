@@ -13,18 +13,18 @@ public:
        for(auto i: mp){
            v.push_back(i);
        }
-        vector<int> ans(k);
+        vector<int> ans;
         sort(v.begin(),v.end(),sortbysec);
         
-        // for(auto i: v){
-        //     cout<<i.first<<"  "<<i.second<<"  "; 
-        // }
-        int j=v.size()-1;
-        for(int i=0;i<k && j>=0;i++){
-            ans[i]=v[j].first;
-            j--;
+        for(auto i: v){
+            cout<<i.first<<"  "<<i.second<<"  "; 
+        }
+        
+        for(int i=v.size()-1;i>=v.size()-k && i>=0;i--){
+            ans.push_back(v[i].first);
         }
         return ans;
+        
     }
         
 //     vector<int> topKFrequent(vector<int>& nums, int k) {
