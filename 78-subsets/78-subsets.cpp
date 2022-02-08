@@ -8,8 +8,10 @@ private:
                 ans.push_back(sub);
             return;
         }
+        //condition to pick
         sub.push_back(nums[i]);
         helper(nums,i+1,n,sub,ans);
+        //condition to don't pick
         sub.pop_back();
         helper(nums,i+1,n,sub,ans);
     }
