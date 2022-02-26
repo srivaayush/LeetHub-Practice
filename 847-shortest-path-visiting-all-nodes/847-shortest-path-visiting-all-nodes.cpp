@@ -27,6 +27,6 @@ public:
             }
             step++;
         }
-        return -1;
+        return 0;
     }
 };
