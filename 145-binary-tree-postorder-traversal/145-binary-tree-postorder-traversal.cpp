@@ -22,7 +22,7 @@ public:
     }
 };*/
 
-//POSTORDER ITERATIVE SOLUTION (Using 2 stacks)
+/*POSTORDER ITERATIVE SOLUTION (Using 2 stacks)
 class Solution {
 public:
     vector<int> postorderTraversal(TreeNode* root) {
@@ -44,7 +44,29 @@ public:
         }                
         return ans;
     }
+};*/
+
+//POSTORDER ITERATIVE SOLUTION (Using 1 stack)
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int>ans;
+        if(root==NULL)return ans;
+        stack<TreeNode*> st1;
+        st1.push(root);
+        while(!st1.empty()){
+            TreeNode*node=st1.top();
+            ans.push_back(node->val);
+            st1.pop();
+            if(node->left)st1.push(node->left);
+            if(node->right)st1.push(node->right);
+        }
+        
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
 };
+
 
 
 
