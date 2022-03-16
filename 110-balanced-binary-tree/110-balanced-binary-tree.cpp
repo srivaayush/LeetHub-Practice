@@ -9,6 +9,11 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+
+
+/*BRUTE FORCE
+
 class Solution {
 private:
     int findHeight(TreeNode* root){
@@ -35,5 +40,35 @@ public:
         if(lcheck==false|| rcheck==false )
             return false;
         return true;
+    }
+};
+
+*/
+
+class Solution {
+private:
+    int heightDiff(TreeNode* root){
+        
+        if(root==NULL)return 0;
+        
+        int lh=heightDiff(root->left);
+        if(lh==-1)
+            return -1;
+        
+        
+        int rh=heightDiff(root->right);
+        if(rh==-1)
+            return -1;
+        
+         if(abs(lh-rh)>1)
+            return -1;
+        
+        int h= 1+max(lh,rh);
+        return h;
+    }
+public:
+    bool isBalanced(TreeNode* root) {
+        
+        return( heightDiff(root)!=-1);
     }
 };
