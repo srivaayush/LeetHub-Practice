@@ -50,13 +50,8 @@ public:
             while(p11.empty()==false && p22.empty()==false && p11.front()>p22.front()){
                 // ans+=p2.size();
                 p22.pop();                
-            }            
-            
-        }
-        
-        return max(ans1,ans);
-        
-        
-        
+            }                        
+        }        
+        return max(ans1,ans);        
     }
 };
