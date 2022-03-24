@@ -1,22 +1,51 @@
 class Solution {
 public:
-    vector<int> searchRange(vector<int>& nums, int target) {
-        int n=nums.size();
+    vector<int> searchRange(vector<int>& A, int x) {
+        int lo=0, hi=A.size()-1;
         int l=-1,u=-1;
-        for(int i=0;i<n;i++)
-        {
-            if(nums[i]==target)
-            {
-                l=i;break;
+        
+        
+        while(lo<=hi){
+            int mid=lo+(hi-lo)/2;
+            if(A[mid]>x){
+                hi=mid-1;
+            }
+            if(A[mid]<x){
+                lo=mid+1;
+            }
+            if(A[mid]==x){
+                if(mid == lo || A[mid] != A[mid-1]){
+                    l = mid;
+                    break;
+                }
+                else{
+                    hi = mid-1;
+                    l = mid-1;
+                }
             }
         }
-        for(int i=n-1;i>=0;i--)
-        {
-            if(nums[i]==target)
-            {
-                u=i;break;
+        lo=0, hi=A.size()-1;
+        while(lo<=hi){
+            int mid=lo+(hi-lo)/2;
+            if(A[mid]>x){
+                hi=mid-1;
+            }
+            if(A[mid]<x){
+                lo=mid+1;
+            }
+            if(A[mid]==x){
+                if(mid == hi || A[mid] != A[mid+1]){
+                    u = mid;
+                    break;
+                }
+                else{
+                    lo = mid+1;
+                    u = mid+1;
+                }
             }
         }
+        
+        // cout<<mid<<endl;
         return {l,u};
     }
 };
