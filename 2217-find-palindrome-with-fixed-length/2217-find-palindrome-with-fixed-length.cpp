@@ -19,12 +19,12 @@ private:
         }
         ll res=0;
         if(ans.size()>k)return -1;
-        for(auto &x:ans){
-            res=(res*10)+(x-'0');
-        }
+        // for(auto &x:ans){
+        //     res=(res*10)+(x-'0');
+        // }
         
         // cout<<ans<<endl;
-        return res;
+        return stoll(ans);
     }
 public:
     vector<long long> kthPalindrome(vector<int>& queries, int k) {
