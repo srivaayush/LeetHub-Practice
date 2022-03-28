@@ -13,7 +13,7 @@ private:
     ListNode*temp;
     bool check(ListNode* head){
         if (head==NULL) return true;
-        bool isPal = check(head->next) & (temp->val == head->val);
+        bool isPal = (check(head->next) && (temp->val == head->val));
         temp = temp->next;
         return isPal;
     }
