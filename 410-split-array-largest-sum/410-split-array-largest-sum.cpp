@@ -1,33 +1,42 @@
 class Solution {
+    typedef long long ll;
 private:
-    bool doable (const vector<int>& nums, int cuts, long long max) {
-        int acc = 0;
-        for (int num : nums) {
-            // This step is unnecessary for this problem. I didn't discard this line because I want doable function more generalized.
-            if (num > max) return false;
-            else if (acc + num <= max) acc += num;
-            else {
-                --cuts;
-                acc = num;
-                if (cuts < 0) return false;
+    bool checkValidity(vector<int> nums, int m, int mid){
+        int cnt=1; 
+        int sum=0;
+        for(auto &x : nums){
+            sum+=x;
+            if (sum>mid){
+                cnt++;
+                sum=x;
+                if(sum>mid) 
+                return false;
             }
+            if (cnt>m) 
+            return false;
         }
-        return true;
+        return true; 
     }
-    
 public:
     int splitArray(vector<int>& nums, int m) {
-        long long left = 0, right = 0;
-        for (int num : nums) {
-            left = max(left, (long long)num);
-            right += num;
+        int n=size(nums); 
+        ll  sum=accumulate(nums.begin(),nums.end(),0);
+        if (m==1) 
+            return sum;
+        ll low=0;ll high=sum;
+        ll mid;
+        ll res=INT_MAX;
+        while (low<=high){
+            mid=low+(high-low)/2;
+            if (checkValidity(nums,m,mid)) 
+            {
+                res=min(res,mid);
+                high=mid-1; 
+            }
+            else 
+                low=mid+1;
+            
         }
-        
-        while (left < right) {
-            long long mid = left + (right - left) / 2;
-            if (doable(nums, m - 1, mid)) right = mid;
-            else left = mid + 1;
-        }
-        return left;
-    }
+        return res;
+    }   
 };
