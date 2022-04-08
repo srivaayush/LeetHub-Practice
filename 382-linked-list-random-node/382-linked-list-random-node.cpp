@@ -10,19 +10,27 @@
  */
 class Solution {
 public:
-    vector<int> ans;
-    Solution(ListNode* head) {
-        while(head!=NULL){
-            ans.push_back(head->val);
-            head=head->next;
+    int sz;
+    ListNode* head;
+public:
+    Solution(ListNode* _head) {
+        head=_head;
+        ListNode *temp=head;
+        sz=0;
+        while(temp!=NULL){
+            sz++;
+            temp=temp->next;
         }
     }
     
     int getRandom() {
-        int n=ans.size();
-        int a=int(rand()%n);
-        cout<<a;
-        return ans[a];
+        ListNode *temp=head;
+        int rnd=rand()%sz;int k=0;
+        while(k<rnd){
+            temp=temp->next;
+            k++;
+        }
+        return temp->val;
     }
 };
 
