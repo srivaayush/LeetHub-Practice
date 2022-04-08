@@ -1,52 +1,35 @@
 class KthLargest {
 public:
     int k;
-    priority_queue<int> pq;
+    priority_queue<int,vector<int>, greater<int>> pq,pq1;
+    
     vector<int> nums;
     multiset<int,greater<int>> ms;
     
     map<int,int, greater<int> >mp;
     KthLargest(int _k, vector<int>& _nums) {
         k=_k;
-        for(auto &x: _nums)
-            mp[x]++;
-            // pq.push(x);
-            // nums.push_back(x);
+        sort(_nums.begin(),_nums.end(),greater<int>());
+        for(int i=0;i<_nums.size() && i<k;i++)
+            pq.push(_nums[i]);
+        
+        pq1=pq;
+        
+        
+        cout<<pq.size();
+        
     }    
     int add(int val) {
-        int p=k;
-        mp[val]++;
-        
-        for(auto &x:mp){
-            int a=x.second;
-            p=p-a;
-            if(p<=0){
-                // for(auto &y:mp)
-                //     cout<<y.first<<" "<<y.second<<endl;
-                // cout<<endl;
-                
-                int res=x.first;
-                // x.second--;
-                // if(x.second==0)
-                //     mp.erase(x.first);
-                return res;
+        if(pq.size()>=k){
+            if(pq.top()>val)return pq.top();
+            else{
+                pq.pop();
+                pq.push(val);
+                return pq.top();
             }
         }
-//         ms.insert(val);
-//         for(auto &x:ms){
-//             p--;
-//             if(p==0){
-//                 int a=x;
-                
-                // for(auto &y:ms)
-                //     cout<<y<<" ";
-                // cout<<endl;
-                
-//                 ms.erase(x);
-//                 return a;
-//             }
-//         }
-        return 0;
+        pq.push(val);
+        return pq.top();
     }
 };
 
