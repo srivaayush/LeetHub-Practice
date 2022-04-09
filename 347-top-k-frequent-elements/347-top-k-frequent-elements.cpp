@@ -1,11 +1,11 @@
 class Solution {
-public:
+private:
     static bool sortbysec(const pair<int,int> &aa, const pair<int,int> &b){
         return (aa.second < b.second);
     }
+public:
     vector<int> topKFrequent(vector<int>& a, int k) {
         unordered_map<int,int> mp;
-        if(a.size()==1) return {a[0]};
         for(int i=0;i<a.size();i++){
             mp[a[i]]++;
         }
@@ -15,19 +15,11 @@ public:
        }
         vector<int> ans;
         sort(v.begin(),v.end(),sortbysec);
-        
-        for(auto i: v){
-            cout<<i.first<<"  "<<i.second<<"  "; 
-        }
-        
-        for(int i=v.size()-1;i>=v.size()-k && i>=0;i--){
+        int n=v.size();
+        if(n==1) return {v[0].first};
+        for(int i=n-1;i>=n-k;i--){
             ans.push_back(v[i].first);
         }
-        return ans;
-        
+        return ans;        
     }
-        
-//     vector<int> topKFrequent(vector<int>& nums, int k) {
-        
-//     }
 };
