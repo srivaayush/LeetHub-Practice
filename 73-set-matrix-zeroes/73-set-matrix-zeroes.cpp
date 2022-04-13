@@ -57,8 +57,7 @@ This won't work for all cases as the values in matrix ranges from -2^31 to 2^31 
 //                     for(int k=0;k<m;k++){
 //                         if(a[k][j]!=0)
 //                             a[k][j]=temp_change;                        
-//                     }
-                    
+//                     }                    
 //                 }
 //             }
 //         }        
@@ -70,43 +69,75 @@ This won't work for all cases as the values in matrix ranges from -2^31 to 2^31 
 //     }
 // };
 
-/* Brute Force with M+N extra space
+/* Better Approach with M+N extra space
 Space : O(M+N)
 Time : O(M*N)
+*/
+// class Solution {
+// public:
+//     void setZeroes(vector<vector<int>>& a) {
+//         int m=a.size();
+//         int n=a[0].size();
+//         vector<int> change_row(m,1);
+//         vector<int> change_column(n,1);
+        
+//         for(int i=0;i<m;i++){
+//             for(int j=0;j<n;j++){
+//                 if(a[i][j]==0){
+//                     change_row[i]=0;
+//                     change_column[j]=0;                    
+//                 }
+//             }
+//         }  
+        
+//         for(int i=0;i<m;i++){
+//             for(int j=0;j<n;j++){
+//                 if(change_row[i]==0 || change_column[j]==0)
+//                     a[i][j]=0;
+//             }
+//         } 
+        
+//     }
+// };
 
-This won't work for all cases as the values in matrix ranges from -2^31 to 2^31 - 1
+
+
+/* Optmised Approach
+Space : O(1)
+We will take the first row as column dummy which we used in previous approach
+We will take the first column as row dummy which we used in previous approach
+Time : O(M*N)
 */
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& a) {
         int m=a.size();
-        int n=a[0].size();
-        vector<int> change_row(m,1);
-        vector<int> change_column(n,1);
+        int n=a[0].size();       
+        
+        bool isColumn0=false;
         
         for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
+            if(a[i][0]==0)
+                isColumn0=true;
+            for(int j=1;j<n;j++){
                 if(a[i][j]==0){
-                    change_row[i]=0;
-                    change_column[j]=0;                    
+                    a[i][0]=0;
+                    a[0][j]=0;
                 }
             }
         }  
-        
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                if(change_row[i]==0 || change_column[j]==0)
+        //travel from last to start
+        for(int i=m-1;i>=0;i--){
+            for(int j=n-1;j>=1;j--){
+                if(a[i][0]==0 ||a[0][j]==0)
                     a[i][j]=0;
             }
+            if(isColumn0)
+                a[i][0]=0;
         } 
-        
-        
         
     }
 };
-
-
-
 
 
 
