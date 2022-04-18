@@ -45,7 +45,7 @@ public:
 
 */
 
-class Solution {
+/*class Solution {
 private:
     int heightDiff(TreeNode* root){
         
@@ -70,5 +70,29 @@ public:
     bool isBalanced(TreeNode* root) {
         
         return( heightDiff(root)!=-1);
+    }
+};*/
+
+class Solution {
+private:
+    int findHeight(TreeNode* root){
+        if(root==NULL)return 0;
+        int lh=findHeight(root->left);
+        int rh=findHeight(root->right);
+        int h= 1+max(lh,rh);
+        return h;
+    }
+public:
+    bool isBalanced(TreeNode* root) {
+        if(root==NULL)
+            return true;
+        int lh=findHeight(root->left);
+        int rh=findHeight(root->right);
+        if(abs(lh-rh)>1)
+            return false;
+        bool lbal=isBalanced(root->left);
+        bool rbal=isBalanced(root->right);
+        if(lbal==false || rbal==false)return false;
+        return true;
     }
 };
