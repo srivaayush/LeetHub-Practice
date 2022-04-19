@@ -24,8 +24,7 @@ private:
     }    
 public:
     int maxPathSum(TreeNode* root) {
-        int maxi=0;
-        if(root!=NULL)maxi=root->val;
+        int maxi=INT_MIN;        
         int res=findMaxPath(root,maxi);
         return maxi;
     }
