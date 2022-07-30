@@ -6,8 +6,8 @@ public:
         int l=0, r=a.size()-1, mid, n;
         
         while(l < r){
-            // mid = l+(r-l)/2;
-            mid = (r+l)/2;
+            mid = l+(r-l)/2;
+            // mid = (r+l)/2;
             if(mid%2 == 0)  
                 n=mid+1;
             else
