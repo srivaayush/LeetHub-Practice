@@ -4,7 +4,7 @@ private:
     int dp[26][100000];
     unordered_map<char,vector<char>> mp;
     int solve(char prev,int n){
-        if(!n) return 1;
+        if(!n) return 1 ;
         if(dp[prev-'a'][n] != -1) return dp[prev-'a'][n];
         
         int ans = 0;
