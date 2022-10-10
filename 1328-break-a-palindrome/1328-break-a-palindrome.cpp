@@ -3,11 +3,9 @@ public:
     string breakPalindrome(string pal) {
         bool b=true;
         int n=pal.size();
-        for(int i=0;i<n;i++){   
+        for(int i=0;i<n/2;i++){   
             char x=pal[i];
-            if(i==n/2)continue;
             if(x!='a'){
-                // b=true;
                 pal[i]='a';
                 return pal;
             }
