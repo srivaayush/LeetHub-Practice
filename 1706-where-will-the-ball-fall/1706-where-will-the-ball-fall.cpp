@@ -1,24 +1,25 @@
 class Solution {
 public:
-    int hmm(vector<vector<int>>& grid, int i, int j){
-        if(i == grid.size())
-            return j;
-        else
-            if(grid[i][j] == 1){
-                if(j != grid[0].size() - 1)
-                    if(grid[i][j + 1] == 1)
-                        return hmm(grid, i + 1, j + 1);
-            }else
-                if(j != 0)
-                    if(grid[i][j -1] == -1)
-                        return hmm(grid, i + 1, j - 1);
-        return -1;
-    }
-    vector<int> findBall(vector<vector<int>>& grid) {
-        int n = grid.size(), m = grid[0].size(), i;
-        vector<int> v;
-        for(i = 0; i < m; i++)
-            v.push_back(hmm(grid, 0, i));
-        return v;
+    vector<int> findBall(vector<vector<int>>& a) {
+        vector<int> ans;
+        int n=a.size(),m=a[0].size();
+        for(int i=0;i<m;i++){
+            int k=i;
+            for(int j=0;j<n;j++){
+                // cout<<k<<"  ";
+                if( (k<0 || k>m) || (k==0 && a[j][k]==-1)  || (k==m-1 && a[j][k]==1) || (a[j][k]==1 && a[j][k+1]==-1) || (a[j][k]==-1 && a[j][k-1]==1)){
+                    k=-1;
+                    break;
+                }
+                
+                if(a[j][k]==1)
+                    k++;
+                else 
+                    k--;
+            }
+            // cout<<"\n";
+            ans.push_back(k);
+        }
+        return ans;
     }
 };
