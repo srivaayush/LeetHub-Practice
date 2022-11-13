@@ -9,13 +9,12 @@ public:
 
             string t;
 
-            // collect word
             while(i < n && s[i] != ' ')
                 t += s[i++];
             
-            if(ans.size()==0) // first word
+            if(ans.size()==0)
                 ans = t;
-            else // reverse words
+            else 
                 ans = t + ' ' + ans;
         }
         
