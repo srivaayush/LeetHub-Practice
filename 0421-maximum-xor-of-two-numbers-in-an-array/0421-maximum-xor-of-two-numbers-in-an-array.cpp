@@ -1,13 +1,15 @@
 class Node{
 public:
     Node *links[2];
+public:
     bool containsKey(int n){
         return (links[n]!=NULL);
     }
-    
+public:    
     Node* get(int n){
         return links[n];
     }
+public:
     void put(int n, Node *node){
         links[n]=node;
     }
